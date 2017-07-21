@@ -140,6 +140,7 @@ const NSTimeInterval MGLFlushInterval = 180;
              @"MGLMapboxAccountType": accountTypeNumber ?: @0,
              @"MGLMapboxMetricsEnabled": @YES,
              @"MGLMapboxMetricsDebugLoggingEnabled": @NO,
+             @"MGLMapboxMetricsAllowsBackgroundLocationUpdates": @YES,
          }];
     }
 }
@@ -272,6 +273,9 @@ const NSTimeInterval MGLFlushInterval = 180;
         [self pauseMetricsCollection];
         return;
     }
+    
+    BOOL allowsBackgroundLocationUpdates = [[NSUserDefaults standardUserDefaults] boolForKey:@"MGLMapboxMetricsAllowsBackgroundLocationUpdates"];
+    self.locationManager.allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates;
 
     // Toggle pause based on current pause state, user opt-out state, and low-power state.
     BOOL enabled = [[self class] isEnabled];

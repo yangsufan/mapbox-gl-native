@@ -6,6 +6,7 @@
 @interface MGLLocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, weak) id<MGLLocationManagerDelegate> delegate;
+@property (nonatomic) BOOL allowsBackgroundLocationUpdates;
 
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;

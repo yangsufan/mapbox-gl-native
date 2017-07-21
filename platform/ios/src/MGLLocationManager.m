@@ -23,7 +23,8 @@ static NSString * const MGLLocationManagerRegionIdentifier = @"MGLLocationManage
     self = [super init];
     if (self) {
         NSArray *backgroundModes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIBackgroundModes"];
-       _hostAppHasBackgroundCapability = [backgroundModes containsObject:@"location"];
+        _hostAppHasBackgroundCapability = [backgroundModes containsObject:@"location"];
+        _allowsBackgroundLocationUpdates = YES;
     }
     return self;
 }
@@ -55,6 +56,11 @@ static NSString * const MGLLocationManagerRegionIdentifier = @"MGLLocationManage
     }
 }
 
+- (void)setAllowsBackgroundLocationUpdates:(BOOL)allowsBackgroundLocationUpdates {
+    _allowsBackgroundLocationUpdates = allowsBackgroundLocationUpdates;
+    self.standardLocationManager.allowsBackgroundLocationUpdates = _allowsBackgroundLocationUpdates;
+}
+
 #pragma mark - Utilities
 
 - (void)configurePassiveStandardLocationManager {
@@ -82,7 +88,7 @@ static NSString * const MGLLocationManagerRegionIdentifier = @"MGLLocationManage
             [self startBackgroundTimeoutTimer];
             // On iOS 9 and above also allow background location updates
             if ([self.standardLocationManager respondsToSelector:@selector(allowsBackgroundLocationUpdates)]) {
-                self.standardLocationManager.allowsBackgroundLocationUpdates = YES;
+                self.standardLocationManager.allowsBackgroundLocationUpdates = _allowsBackgroundLocationUpdates;
             }
         }
 
