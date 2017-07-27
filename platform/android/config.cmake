@@ -30,6 +30,9 @@ macro(mbgl_platform_core)
         PRIVATE platform/android/src/run_loop.cpp
         PRIVATE platform/android/src/run_loop_impl.hpp
         PRIVATE platform/android/src/timer.cpp
+        PRIVATE platform/android/src/timer.cpp
+        PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.hpp
+        PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.cpp
 
         # File source
         PRIVATE platform/android/src/http_file_source.cpp

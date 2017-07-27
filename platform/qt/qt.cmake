@@ -29,6 +29,8 @@ set(MBGL_QT_FILES
 
     # Misc
     PRIVATE platform/default/logging_stderr.cpp
+    PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.cpp
+    PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.hpp
 
     # Thread pool
     PRIVATE platform/default/mbgl/util/shared_thread_pool.cpp

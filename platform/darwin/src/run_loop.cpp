@@ -1,6 +1,11 @@
 #include <mbgl/util/run_loop.hpp>
 #include <mbgl/util/async_task.hpp>
+#include <mbgl/util/timer.hpp>
+#include <mbgl/util/platform.hpp>
+#include <mbgl/actor/mailbox.hpp>
+#include <mbgl/actor/message.hpp>
 #include <mbgl/actor/scheduler.hpp>
+#include <mbgl/util/run_loop_scheduled_task.hpp>
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -44,6 +49,10 @@ void RunLoop::runOnce() {
 
 void RunLoop::stop() {
     invoke([&] { CFRunLoopStop(CFRunLoopGetCurrent()); });
+}
+    
+std::unique_ptr<Scheduler::Scheduled> RunLoop::schedule(Duration timeout, std::weak_ptr<Mailbox> mailbox, std::unique_ptr<Message> message) {
+    return std::make_unique<RunLoopScheduledTask>(timeout, std::move(mailbox), std::move(message));
 }
 
 } // namespace util

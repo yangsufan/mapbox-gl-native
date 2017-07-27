@@ -13,6 +13,8 @@ macro(mbgl_platform_core)
         PRIVATE platform/darwin/src/async_task.cpp
         PRIVATE platform/darwin/src/run_loop.cpp
         PRIVATE platform/darwin/src/timer.cpp
+        PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.hpp
+        PRIVATE platform/default/mbgl/util/run_loop_scheduled_task.cpp
 
         # File source
         PRIVATE platform/darwin/src/http_file_source.mm
