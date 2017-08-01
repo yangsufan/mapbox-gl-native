@@ -64,5 +64,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Settings</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).settings</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>settings</string>
+		</dict>
+	</array>
 </dict>
 </plist>
