@@ -305,8 +305,6 @@ jobs:
       JOBS: 4
       BUILDTYPE: RelWithDebInfo
       WITH_EGL: 1
-      PACKAGE_JSON_VERSION: $(node -e "console.log(require('./package.json').version)")
-      PUBLISH: $([[ "${CIRCLE_TAG}" == "node-v${PACKAGE_JSON_VERSION}" ]] && echo true)
     steps:
       - checkout
       - *generate-cache-key
@@ -329,8 +327,6 @@ jobs:
       JOBS: 4
       BUILDTYPE: RelWithDebInfo
       WITH_EGL: 1
-      PACKAGE_JSON_VERSION: $(node -e "console.log(require('./package.json').version)")
-      PUBLISH: $([[ "${CIRCLE_TAG}" == "node-v${PACKAGE_JSON_VERSION}" ]] && echo true)
     steps:
       - checkout
       - *generate-cache-key
@@ -353,8 +349,6 @@ jobs:
       JOBS: 4
       BUILDTYPE: Debug
       WITH_EGL: 1
-      PACKAGE_JSON_VERSION: $(node -e "console.log(require('./package.json').version)")
-      PUBLISH: $([[ "${CIRCLE_TAG}" == "node-v${PACKAGE_JSON_VERSION}" ]] && echo true)
     steps:
       - checkout
       - *generate-cache-key
