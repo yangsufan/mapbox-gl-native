@@ -140,7 +140,13 @@ public:
                     revalidation.priorModified = offlineResponse->modified;
                     revalidation.priorExpires = offlineResponse->expires;
                     revalidation.priorEtag = offlineResponse->etag;
-                    callback(*offlineResponse);
+
+                    // Don't return resources the server requested not to show when they're stale.
+                    // Even if we can't directly use the response, we may still use it to send a
+                    // conditional HTTP request.
+                    if (offlineResponse->isUsable()) {
+                        callback(*offlineResponse);
+                    }
                 }
             }
 
